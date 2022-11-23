@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <script>
+    // deepClone
+    const objs = {
+      name: '1233',
+      arrs: ['1', '2', '3'],
+    }
+    const deepClone = (obj) => {
+      const clone = Array.isArray(obj) ? [] : {}
+      if (obj && typeof obj === "object" && obj !== null) {
+        for (let key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            if (obj[key] && typeof obj[key] === "object") {
+              clone[key] = deepClone(obj[key])
+            } else {
+              clone[key] = obj[key]
+            }
+          }
+        }
+      }
+      return clone
+    }
+    const objc = deepClone(objs)
+    objs.arrs = ['3']
+    objs.name = 'dasda'
+    console.log(objs)
+    console.log(objc)
+
+  </script>
+
+</body>
+
+</html>
